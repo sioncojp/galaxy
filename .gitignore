@@ -1,4 +1,4 @@
 _vendor
 .vendor
 vendor
-test-app
+cmd/galaxy/galaxy
