@@ -14,11 +14,8 @@ INDEX idx_number(number)
 );
 
 ### glide install & run app
-$ brew install glide
-$ export GO15VENDOREXPERIMENT=1
-$ glide install
-$ go build cmd/galaxy/*.go
-$ ./galaxy --config=example/galaxy.yml
+$ go install github.com/sioncojp/galaxy/cmd/galaxy
+$ galaxy -c config.yml
 ```
 
 #### examples

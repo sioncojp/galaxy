@@ -1,5 +1,6 @@
 # How to try test-app?
 * test-app is http server written by Golang.
+* So this tour need Go development environment to execute `go build`
 
 ## 1. Docker pull circusd and nginx-proxy-socket
 ```shell
@@ -7,8 +8,11 @@ $ docker pull sioncojp/circusd:latest
 $ docker pull sioncojp/nginx-proxy-socket:latest
 ```
 
-## 2. Setting External shell
+## 2. Setting config.yml and External shell
 ```
+$ vi /tmp/config.yml
+# reference examples/config.yml
+
 $ vi /tmp/hoge.sh
 GOOS=linux GOARCH=amd64 go build *.go
 mv test-app $1/app
@@ -27,12 +31,8 @@ INDEX idx_number(number)
 );
 
 ### glide install & run app
-$ brew install glide
-$ export GO15VENDOREXPERIMENT=1
-$ go get github.com/sioncojp/galaxy
-$ cd $GOPATH/src/github.com/sioncojp/galaxy
-$ glide install
-$ go run cmd/galaxy/galaxy.go -c examples/config.yml
+$ go install github.com/sioncojp/galaxy/cmd/galaxy
+$ galaxy -c /tmp/config.yml
 ```
 
 ## 4. API Request to galaxy
