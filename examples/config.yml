@@ -14,8 +14,8 @@ github:
 url: "test-app.com"
 script: "/tmp/hoge.sh"
 docker:
-  image: "circusd"
-  tag: "1.0"
-  proxyimage: "galaxy-proxy"
-  proxytag: "1.0"
+  image: "sioncojp/circusd"
+  tag: "latest"
+  proxyimage: "sioncojp/nginx-proxy-socket"
+  proxytag: "latest"
   exec: "/etc/init.d/circusd restart"

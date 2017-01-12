@@ -22,23 +22,30 @@ $ ./galaxy --config=example/galaxy.yml
 ```
 
 #### examples
-* show `examples/README.md`
+* show [examples/README.md](examples/README.md)
 
 ## config.yml
 * You can execute external /bin/bash script after the repository will have changed a commit number.
 
 ## API
 ### create target repository
-* curl http://localhost:8080/repository -X POST
+```shell
+curl http://localhost:8080/repository -X POST
+```
 
 ### show running container list
-* curl http://localhost:8080/container/list
+```shell
+curl http://localhost:8080/container/list
+```
 
 ### create/delete proxy server
+```shell
 $ curl http://localhost:8080/container_proxy -X POST
 $ curl http://localhost:8080/container_proxy -X DELETE
+```
 
 ### create/delete container
+```shell
 $ curl -F "commit_number=99c6894" http://localhost:8080/container/:commit_number -X POST
 $ curl -F "commit_number=99c6894" http://localhost:8080/container/:commit_number -X DELETE
 ```
