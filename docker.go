@@ -23,6 +23,9 @@ func ShowAllContainer() ([]string, error) {
 
 	for scanner.Scan() {
 		if strings.Contains(scanner.Text(), "galaxy-") {
+			if strings.Contains(scanner.Text(), "galaxy-proxy") {
+				break
+			}
 			lines = append(lines, scanner.Text())
 		}
 	}
@@ -40,7 +43,7 @@ func execCommandString(cmd, cn string) []string {
 	return cmdSlice
 }
 
-// ExecDocker ...Be able to execute "bin/bash command" to container after container running.
+// execDocker ...Be able to execute "bin/bash command" to container after container running.
 // This logic needed exec.Command().Output().
 // Cannot running exec.Command().Run().
 func execContainer(cmd, cn string) error {
@@ -54,7 +57,7 @@ func execContainer(cmd, cn string) error {
 	return nil
 }
 
-// runDocker ...Run docker
+// runContainer ...Run docker
 func (config *Config) runContainer(cn string) error {
 	err := exec.Command(
 		"docker",
