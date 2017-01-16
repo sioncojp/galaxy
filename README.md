@@ -35,6 +35,11 @@ curl http://localhost:8080/repository -X POST
 curl http://localhost:8080/container/list
 ```
 
+### show url list
+```shell
+curl http://localhost:8080/url/list
+```
+
 ### create/delete proxy server
 ```shell
 $ curl http://localhost:8080/container_proxy -X POST

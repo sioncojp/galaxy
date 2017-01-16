@@ -30,6 +30,21 @@ func Router(config *Config) *gin.Engine {
 		})
 	})
 
+	// /url/list ...Show all url list
+	r.GET("/url/list", func(c *gin.Context) {
+		commits, err := config.SelectAllCommits()
+		if err != nil {
+			c.JSON(400, gin.H{"message": err.Error()})
+			return
+		}
+
+		for _, commit := range commits {
+			c.JSON(200, gin.H{
+				"url": ShowUrlString(commit.Number, config.Url),
+			})
+		}
+	})
+
 	// /container/list ...Show all running container
 	r.GET("/container/list", func(c *gin.Context) {
 		lines, err := ShowAllContainer()
