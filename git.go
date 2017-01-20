@@ -19,7 +19,7 @@ func (config *Config) GitClone() error {
 		config.WorkDir+"/"+config.Github.Name,
 	).Run()
 	if err != nil {
-		return err
+		return errors.Wrap(err, "Failed git clone")
 	}
 	return nil
 }
@@ -106,7 +106,7 @@ func (config *Config) GitCheckoutCommit(cn string) error {
 
 // checkCommitNumber ...Check commit number. set minimum size is 7-digit.
 func checkCommitNumber(cn string) error {
-	if len(cn) >= 7 {
+	if len(cn) >= 7 || cn == "master" {
 		return nil
 	}
 	return fmt.Errorf("commit number is very short")

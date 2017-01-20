@@ -137,11 +137,9 @@ func (config *Config) DeleteContainer(cn string) error {
 
 	commit := Commits{Number: cn}
 	if err := db.Where(&commit).Find(&Commits{}).Error; err != nil {
-		fmt.Println(err)
 		return err
 	}
 	if err := db.Where(&commit).Delete(&Commits{}).Error; err != nil {
-		fmt.Println(err)
 		return err
 	}
 	deleteContainer(cn)
