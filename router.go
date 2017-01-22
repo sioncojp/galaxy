@@ -69,6 +69,11 @@ func Router(config *Config) *gin.Engine {
 
 	// /container/:commit_number ...CRUD Container and commits table
 	r.POST("/container/:commit_number", func(c *gin.Context) {
+		if err := config.GitCheckoutMasterPull(); err != nil {
+			c.JSON(400, gin.H{"message": err.Error()})
+			return
+		}
+
 		cn := c.PostForm("commit_number")
 		cn, err := config.GitCommitNumerTo40digit(cn)
 		if err != nil {

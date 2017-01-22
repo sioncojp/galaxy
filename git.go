@@ -2,9 +2,7 @@ package galaxy
 
 import (
 	"fmt"
-	"os"
 	"os/exec"
-	"path/filepath"
 	"strings"
 
 	"github.com/pkg/errors"
@@ -32,17 +30,15 @@ func (config *Config) gitDirString() string {
 	return fmt.Sprintf("--git-dir=%s/%s/.git", workdir, gitname)
 }
 
-// repoWorkDirString ...Output repository_work_dir.
-func (config *Config) repoWorkDirString() string {
-	workdir := config.WorkDir
-	reponame := config.Github.Name
+// GitCheckoutMasterPull ...Git checkout master.
+func (config *Config) GitCheckoutMasterPull() error {
+	prev, err := config.ChangeRepositoryDir()
+	if err != nil {
+		return err
+	}
+	defer RevertDir(prev)
 
-	return fmt.Sprintf("%s/%s", workdir, reponame)
-}
-
-// GitCheckoutMaster ...Git checkout master.
-func (config *Config) gitCheckoutMaster(cn string) error {
-	err := exec.Command(
+	err = exec.Command(
 		"git",
 		"checkout",
 		"-f",
@@ -51,11 +47,11 @@ func (config *Config) gitCheckoutMaster(cn string) error {
 	if err != nil {
 		return errors.Wrap(err, "git checkout master")
 	}
-	return config.gitPull(cn)
+	return gitPull()
 }
 
-// GitPull ...Git pull origin master.
-func (config *Config) gitPull(cn string) error {
+// gitPull ...Git pull origin master.
+func gitPull() error {
 	err := exec.Command(
 		"git",
 		"pull",
@@ -65,11 +61,12 @@ func (config *Config) gitPull(cn string) error {
 	if err != nil {
 		return errors.Wrap(err, "git pull")
 	}
-	return config.gitCheckoutCommitNumber(cn)
+	return nil
 }
 
-// gitCheckoutCommit ...Git checkout commit-number.
+// gitCheckoutCommitNumber ...Git checkout commit-number.
 func (config *Config) gitCheckoutCommitNumber(cn string) error {
+
 	err := exec.Command(
 		"git",
 		"checkout",
@@ -81,23 +78,18 @@ func (config *Config) gitCheckoutCommitNumber(cn string) error {
 	return RunScript(config.Script, config.WorkDir+"/"+cn[:7])
 }
 
-func (config *Config) gitCheckoutCommit(cn string) error {
-	return config.gitCheckoutMaster(cn)
-}
-
 // GitCheckoutCommit ...Do as below to target repository.
 // Chdir to repository directory -> git checkout master
 // -> git pull origin master -> git checkout commit_number
 // -> run script file
 func (config *Config) GitCheckoutCommit(cn string) error {
-	prev, err := filepath.Abs(".")
+	prev, err := config.ChangeRepositoryDir()
 	if err != nil {
 		return err
 	}
-	defer os.Chdir(prev)
-	os.Chdir(config.repoWorkDirString())
+	defer RevertDir(prev)
 
-	if err := config.gitCheckoutCommit(cn); err != nil {
+	if err := config.gitCheckoutCommitNumber(cn); err != nil {
 		return err
 	}
 

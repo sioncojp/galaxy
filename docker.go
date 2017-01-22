@@ -6,6 +6,8 @@ import (
 	"os/exec"
 	"strings"
 	"sync"
+
+	"github.com/pkg/errors"
 )
 
 // DockerImageName ...Image name use option "-it" when docker run.
@@ -52,7 +54,7 @@ func execContainer(cmd, cn string) error {
 		execCommandString(cmd, cn)...,
 	).Output()
 	if err != nil {
-		return err
+		return errors.Wrap(err, "cannot exec container")
 	}
 
 	return nil
@@ -74,7 +76,7 @@ func (config *Config) runContainer(cn string) error {
 		DockerImageName(config.Docker.Image, config.Docker.Tag),
 	).Run()
 	if err != nil {
-		return err
+		return errors.Wrap(err, "cannot run container")
 	}
 	if err := execContainer(config.Docker.Exec, cn); err != nil {
 		return err
@@ -126,7 +128,7 @@ func deleteContainer(cn string) error {
 		"galaxy-"+cn[:7],
 	).Run()
 	if err != nil {
-		return err
+		return errors.Wrap(err, "cannot delete container")
 	}
 
 	return nil
@@ -173,7 +175,7 @@ func (config *Config) CreateContainerProxy() error {
 		DockerImageName(config.Docker.ProxyImage, config.Docker.ProxyTag),
 	).Run()
 	if err != nil {
-		return err
+		return errors.Wrap(err, "cannot create container proxy")
 	}
 
 	return nil
@@ -188,7 +190,7 @@ func DeleteContainerProxy() error {
 		"galaxy-proxy",
 	).Run()
 	if err != nil {
-		return err
+		return errors.Wrap(err, "cannot delete container proxy")
 	}
 
 	return nil
