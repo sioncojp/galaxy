@@ -1,6 +1,6 @@
 # Galaxy
-
 * Galaxy provides you with target repository's http server as URL: `http://{{commit-number}}-{{url}}` by running container.
+![galaxy](doc/galaxy.png)
 
 ## Usage
 * You need to install docker from https://www.docker.com/
@@ -21,7 +21,8 @@ $ galaxy -c config.yml
 ```
 
 #### examples
-* show [examples/README.md](examples/README.md)
+* Sample of Go http server is [doc/sample_go/README.md](doc/sample_go/README.md)
+* Sample of Rails http server is [doc/sample_rails/README.md](doc/sample_rails/README.md)
 
 ## config.yml
 * You can execute external /bin/bash script after the repository will have changed a commit number.
