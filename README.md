@@ -3,6 +3,8 @@
 * Galaxy provides you with target repository's http server as URL: `http://{{commit-number}}-{{url}}` by running container.
 
 ## Usage
+* You need to install docker from https://www.docker.com/
+
 ```shell
 ### create database writing in config.yml
 > create database galaxy

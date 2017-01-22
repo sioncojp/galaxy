@@ -38,11 +38,8 @@ func ShowAllContainer() ([]string, error) {
 
 // execCommandString ...Output executing command for ExecDocker function
 func execCommandString(cmd, cn string) []string {
-	cmdSlice := []string{"exec", "galaxy-" + cn[:7]}
-	c := strings.Fields(cmd)
-	for _, t := range c {
-		cmdSlice = append(cmdSlice, t)
-	}
+	cmdSlice := []string{"exec", "galaxy-" + cn[:7], "bash", "-c"}
+	cmdSlice = append(cmdSlice, cmd)
 	return cmdSlice
 }
 
