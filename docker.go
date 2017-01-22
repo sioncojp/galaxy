@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os/exec"
 	"strings"
+	"sync"
 )
 
 // DockerImageName ...Image name use option "-it" when docker run.
@@ -94,6 +95,10 @@ func (config *Config) createContainer(cn string) error {
 
 // CreateContainer ...Create container and create a record at commits table
 func (config *Config) CreateContainer(cn string) error {
+	lock := new(sync.Mutex)
+	lock.Lock()
+	defer lock.Unlock()
+
 	db, err := config.DBConnect()
 	if err != nil {
 		return err

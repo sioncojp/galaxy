@@ -22,13 +22,11 @@ type CommandOpts struct {
 func main() {
 	log.SetOutput(os.Stderr)
 	log.SetPrefix(app + ": ")
-	runtime.GOMAXPROCS(1)
-	//runtime.GOMAXPROCS(runtime.NumCPU())
+	runtime.GOMAXPROCS(runtime.NumCPU())
 
 	opts := CommandOpts{}
 	if _, err := flags.ParseArgs(&opts, os.Args[1:]); err != nil {
 		log.Fatalf("Error: %s", err)
-		os.Exit(1)
 	}
 
 	config, err := g.LoadConfig(opts.Config)

@@ -42,6 +42,7 @@ $ curl http://localhost:8080/container_proxy -X POST
 $ curl -F "commit_number=99c6894" http://localhost:8080/container/:commit_number -X POST
 $ curl -F "commit_number=28ea6b0" http://localhost:8080/container/:commit_number -X POST
 $ curl http://localhost:8080/container/list
+$ curl http://localhost:8080/url/list
 ```
 
 ## 5. show from browser after edit /etc/hosts
