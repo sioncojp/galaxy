@@ -1,0 +1,118 @@
+{
+    "memo": "d337c09b6a4bdd8f44f9e2fdd10fba124e490979b5aafa3a618ef085e36671bf",
+    "projects": [
+        {
+            "name": "github.com/gin-gonic/gin",
+            "version": "v1.1.3",
+            "revision": "041ca04a4768ededad44dcc2748f3d47e4b59bde",
+            "packages": [
+                "binding",
+                "render"
+            ]
+        },
+        {
+            "name": "github.com/go-sql-driver/mysql",
+            "branch": "master",
+            "revision": "2e00b5cd70399450106cec6431c2e2ce3cae5034",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/golang/protobuf",
+            "branch": "master",
+            "revision": "8ee79997227bf9b34611aee7946ae64735e6fd93",
+            "packages": [
+                "proto"
+            ]
+        },
+        {
+            "name": "github.com/jessevdk/go-flags",
+            "version": "v1.1",
+            "revision": "8bc97d602c3bfeb5fc6fc9b5a9c898f245495637",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/jinzhu/gorm",
+            "branch": "master",
+            "revision": "23abd03a95a16de0ef2d559979ead26b2a3cce66",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/jinzhu/inflection",
+            "branch": "master",
+            "revision": "1c35d901db3da928c72a72d8458480cc9ade058f",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/manucorporat/sse",
+            "branch": "master",
+            "revision": "ee05b128a739a0fb76c7ebd3ae4810c1de808d6d",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/mattn/go-isatty",
+            "branch": "master",
+            "revision": "30a891c33c7cde7b02a981314b4228ec99380cca",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/pkg/errors",
+            "branch": "master",
+            "revision": "248dadf4e9068a0b3e79f02ed0a610d935de5302",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "golang.org/x/net",
+            "branch": "master",
+            "revision": "007e530097ad7f954752df63046b4036f98ba6a6",
+            "packages": [
+                "context"
+            ]
+        },
+        {
+            "name": "golang.org/x/sys",
+            "branch": "master",
+            "revision": "7a6e5648d140666db5d920909e082ca00a87ba2c",
+            "packages": [
+                "unix"
+            ]
+        },
+        {
+            "name": "gopkg.in/gin-gonic/gin.v1",
+            "branch": "master",
+            "revision": "e2212d40c62a98b388a5eb48ecbdcf88534688ba",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "gopkg.in/go-playground/validator.v8",
+            "branch": "master",
+            "revision": "5f57d2222ad794d0dffb07e664ea05e2ee07d60c",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "gopkg.in/yaml.v2",
+            "branch": "v2",
+            "revision": "4c78c975fe7c825c6d1466c42be594d1d6f3aba6",
+            "packages": [
+                "."
+            ]
+        }
+    ]
+}

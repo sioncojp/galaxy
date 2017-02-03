@@ -15,9 +15,11 @@ created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 INDEX idx_number(number)
 );
 
-### glide install & run app
-$ go install github.com/sioncojp/galaxy/cmd/galaxy
-$ galaxy -c config.yml
+### run app
+$ go get -u github.com/sioncojp/galaxy
+$ make deps
+$ make build
+$ bin/galaxy -c config.yml
 ```
 
 #### examples
